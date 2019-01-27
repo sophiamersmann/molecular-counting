@@ -576,7 +576,7 @@ class Estimator(object):
             The generated axis.
         """
         # plot histogram and KDE
-        fig, ax = plt.subplots()
+        ax = plt.gca()
         trace = self.mcmc.trace(parameter)[:]
         sns.distplot(trace, ax=ax, **kwargs)
 
@@ -689,6 +689,7 @@ class Estimator(object):
             # save to file
             out = out_template.format(param)
             plt.savefig(out, bbox_inches="tight")
+            plt.clf()
 
     def stats_to_file(self, filename):
         """
