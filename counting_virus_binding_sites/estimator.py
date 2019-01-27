@@ -583,29 +583,34 @@ class Estimator(object):
         # vertical line to show measures of centrality
         vline = partial(ax.axvline, color="0.1", lw=0.8)
 
+        # is current parameter n_sat
+        is_nsat = parameter == "n_sat"
+
         # show mean of the distribution
         if show_mean:
             mean = self.point_estimates[parameter]["mean"]
-            vline(mean, ls=":", label=f"Mean ({mean:.2f})")
+            readable = utils.to_readable_str(mean, is_nsat)
+            vline(mean, ls=":", label=f"Mean ({readable})")
 
         # show median of the distribution
         if show_median:
             median = self.point_estimates[parameter]["median"]
-            vline(median, ls="-.", label=f"Median ({median:.2f})")
+            readable = utils.to_readable_str(median, is_nsat)
+            vline(median, ls="-.", label=f"Median ({readable})")
 
+        # show mode of the distribution
         if show_mode:
             mode = self.point_estimates[parameter]["mode"]
-            vline(mode, ls="--", label=f"Mode ({mode:.2f})")
+            readable = utils.to_readable_str(mode, is_nsat)
+            vline(mode, ls="--", label=f"Mode ({readable})")
 
         # show 95% HDP interval
         if show_hdp:
             hdp = self.point_estimates[parameter]["hdp"]
+            readable = [utils.to_readable_str(x, is_nsat) for x in hdp]
             ax.axvspan(
                 *hdp, facecolor="0.1", alpha=0.1,
-                label=(
-                    "95% HPD interval "
-                    "({:.2f}-{:.2f})".format(*hdp)
-                )
+                label="95% HPD interval ({}-{})".format(*readable)
             )
 
         if xlim is not None:

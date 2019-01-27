@@ -194,3 +194,28 @@ def sub_dict(d, keep):
         for key, value in d.items()
         if key in keep
     }
+
+
+def to_readable_str(value, is_int):
+    """
+    Transform a given numerical value
+    to a human readable string.
+
+    Parameters
+    ----------
+    value : {int, float}
+        A numerical value.
+    is_int : bool
+        Indicates if the given
+        value is to be interpreted
+        as an integer.
+
+    Returns
+    -------
+    str
+        The given numerical value
+        as human readable string.
+    """
+    if is_int and value % 1 == 0:
+        return str(int(value))
+    return f"{value:.2f}"
