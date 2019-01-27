@@ -30,8 +30,15 @@ def main():
     )
 
     # plot diagnostics
-    if cfg["mcmc"]["diagnostics"]:
-        estimator.diagnostics(result_dir)
+    if cfg["mcmc"]["diagnostics"]["plot"]:
+        prefix = cfg["mcmc"]["diagnostics"]["prefix"]
+        suffix = cfg["mcmc"]["diagnostics"]["suffix"]
+        estimator.diagnostics(
+            result_dir,
+            format=cfg["mcmc"]["diagnostics"]["format"],
+            prefix=prefix if prefix is not None else "",
+            suffix=suffix if suffix is not None else ""
+        )
 
     # plot posterior distributions
     if cfg["posteriors"]["plot"]:
