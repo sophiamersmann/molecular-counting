@@ -35,12 +35,20 @@ def main():
 
     # plot posterior distributions
     if cfg["posteriors"]["plot"]:
-        kwarg_keys = ["show_mean", "show_hdp", "show_median", "show_mode"]
+        kwarg_keys = [
+            "show_mean", "show_hdp",
+            "show_median", "show_mode",
+            "format"
+        ]
+        prefix = cfg["posteriors"]["prefix"]
+        suffix = cfg["posteriors"]["suffix"]
         estimator.plot_posteriors(
             result_dir,
             **utils.sub_dict(cfg["posteriors"], kwarg_keys),
             xlim_nsat=cfg["posteriors"]["xlim"]["nsat"],
-            xlim_p=cfg["posteriors"]["xlim"]["pi"]
+            xlim_p=cfg["posteriors"]["xlim"]["pi"],
+            prefix=prefix if prefix is not None else "",
+            suffix=suffix if suffix is not None else ""
         )
 
     # write simple statistics on the estimated parameters to file
