@@ -525,6 +525,9 @@ class Estimator(object):
             verbose=0
         )
 
+        # make sure all open figures are closed
+        plt.close("all")
+
         # add prefix to filename if requested
         if prefix:
             filenames = [
