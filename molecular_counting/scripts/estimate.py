@@ -8,8 +8,8 @@ to sample from the posterior distributions.
 import os
 from argparse import ArgumentParser
 
-from counting_virus_binding_sites import utils
-from counting_virus_binding_sites.estimator import Estimator
+from molecular_counting import utils
+from molecular_counting.estimator import Estimator
 
 
 def main():

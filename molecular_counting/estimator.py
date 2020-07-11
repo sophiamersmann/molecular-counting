@@ -20,9 +20,9 @@ import seaborn as sns
 
 import pymc
 
-from counting_virus_binding_sites import model as m
-from counting_virus_binding_sites.experiment import Experiment
-from counting_virus_binding_sites import utils
+from molecular_counting import model as m
+from molecular_counting.experiment import Experiment
+from molecular_counting import utils
 
 
 def compute_n_sat_prior(
