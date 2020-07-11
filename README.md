@@ -1,1 +1,3 @@
-# counting-virus-binding-sites
+Implementation of the statistical model introduced in 
+
+> TODO: Cite paper
